@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="view_sale_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" icon="fa-gear" name="action_work_order_view" type="object">
+                        <field name="work_order_count" string="Work Order" widget="statinfo" />
+                    </button>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <button string="Check" states="draft,sent" name="check_team_availability" type="object" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="is_booking_order" readonly="1"/>
+                    <field name="team" attrs="{'invisible':[('is_booking_order', '!=', True)], 'required': [('is_booking_order', '=', True)]}"/>
+                    <field name="team_leader" attrs="{'invisible':[('is_booking_order', '!=', True)], 'required': [('is_booking_order', '=', True)]}"/>
+                    <field name="team_members" widget="many2many_tags" attrs="{'invisible':[('is_booking_order', '!=', True)], 'required': [('is_booking_order', '=', True)]}"/>
+                    <field name="booking_start" attrs="{'invisible':[('is_booking_order', '!=', True)], 'required': [('is_booking_order', '=', True)]}"/>
+                    <field name="booking_end" attrs="{'invisible':[('is_booking_order', '!=', True)], 'required': [('is_booking_order', '=', True)]}"/>
+                    <field name="work_order_ids" widget="many2many_tags" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

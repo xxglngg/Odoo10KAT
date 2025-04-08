@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+    
+        <record id="view_sale_order_tree_booking" model="ir.ui.view">
+            <field name="name">sale.order.tree.booking</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="is_booking_order" readonly="1"/>
+                    <field name="team_id"/>
+                    <field name="team_leader"/>
+                    <field name="team_members" widget="many2many_tags"/>
+                    <field name="booking_start"/>
+                    <field name="booking_end"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_booking_order" model="ir.actions.act_window">
+            <field name="name">Booking Order</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_sale_order_tree_booking"/>
+            <field name="domain">[('is_booking_order', '=', True)]</field>
+        </record>  
+        
+        <menuitem id="booking_menu"
+            name="Booking"
+            parent="sales_team.menu_base_partner"/>
+
+        <menuitem id="booking_order_menu" 
+            name="Booking Order"
+            parent="booking_menu"
+            action="action_booking_order"
+            sequence="1"/>
+
+    </data>
+</odoo>

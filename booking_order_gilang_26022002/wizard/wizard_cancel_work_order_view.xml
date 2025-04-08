@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="view_wizard_work_order_cancel_form" model="ir.ui.view">
+            <field name="name">wizard.cancel.work.order.form</field>
+            <field name="model">wizard.cancel.work.order</field>
+            <field name="arch" type="xml">
+                <form string="Reason Cancel Work Order">
+                    <sheet>
+                        <group>
+                            <field name="reason"/>
+                            <field name="work_order_id" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button string="Confirm" name="confirm_cancel_work_order" type="object" class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-secondary"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

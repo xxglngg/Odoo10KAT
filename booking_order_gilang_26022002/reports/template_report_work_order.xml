@@ -1,0 +1,34 @@
+<odoo>
+    <template id="work_order_report_template">
+        <div class="page">
+            <t t-foreach="docs" t-as="doc">
+                <table class="table table-bordered" style="width: 100%;">
+                    <tr>
+                        <td colspan="4"><span t-field="doc.wo_number"/></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Team Name</strong></td>
+                        <td><span t-field="doc.team_id.name"/></td>
+                        <td><strong>Customer</strong></td>
+                        <td><span t-field="doc.booking_order_id.partner_id.name"/></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Booking Order Reference</strong></td>
+                        <td><span t-field="doc.booking_order_id.name"/></td>
+                        <td><strong>Date</strong></td>
+                        <td><span t-field="doc.date_start"/> - <span t-field="doc.date_end"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><strong>Notes:</strong>
+                        <br/>
+                        <span t-field="doc.notes"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><strong>Signature:</strong>
+                        <br/></td>
+                    </tr>
+                </table>
+            </t>
+        </div>
+    </template>
+</odoo>
